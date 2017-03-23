@@ -1,0 +1,37 @@
+'use strict'
+
+const express = require('express')
+const translate = require('google-translate-api')
+const Slapp = require('slapp')
+const ConvoStore = require('slapp-convo-beepboop')
+const Context = require('context')
+
+var slapp = Slapp({
+    convo_store: ConvoStore(),
+    context: Context(),
+})
+
+var HELP_TEXT = `
+Oto lista rzeczy, które potrafię:
+\`help\` - wyświetla tą wiadomość.
+\`tusklate\` - tłumaczę Twoje zdanie na mój zaawansowany angielski.
+\`pics\` - pokażę Ci ciekawy obrazek.
+`
+
+slapp.message('help', ['mention', 'direct_message'], (msg) => {
+  msg.say(HELP_TEXT)
+})
+
+var app = slapp.attachToExpress(express())
+
+app.get('/', (req, res) => {
+    res.send('Hello! I\'m Tusklator!')
+})
+
+app.listen(process.env.PORT, (err) => {
+  if (err) {
+    return console.error(err)
+  }
+
+  console.log(`Listening on port ${process.env.PORT}`)
+})

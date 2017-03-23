@@ -1,0 +1,37 @@
+{
+  "name": "tusklator",
+  "version": "1.0.0",
+  "description": "Slackbot with funny features",
+  "main": "server.js",
+  "scripts": {
+    "watch": "nodemon server.js",
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdannael/tusklator.git"
+  },
+  "keywords": [
+    "Slack",
+    "Bot",
+    "Tusk",
+    "Tusklator",
+    "English"
+  ],
+  "author": "mr.dannael",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdannael/tusklator/issues"
+  },
+  "homepage": "https://github.com/mrdannael/tusklator#readme",
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.2",
+    "google-translate-api": "^2.2.2",
+    "nodemon": "^1.11.0",
+    "slapp": "^2.2.1",
+    "slapp-context-beepboop": "^1.4.0",
+    "slapp-convo-beepboop": "^1.0.1",
+    "standard": "^9.0.2"
+  }
+}
