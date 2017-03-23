@@ -4,7 +4,7 @@ const express = require('express')
 const translate = require('google-translate-api')
 const Slapp = require('slapp')
 const ConvoStore = require('slapp-convo-beepboop')
-const Context = require('context')
+const Context = require('slapp-context-beepboop')
 
 var slapp = Slapp({
     convo_store: ConvoStore(),
