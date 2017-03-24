@@ -23,9 +23,9 @@ slapp.message('(.*)', ['mention', 'direct_message'], (msg) => {
     msg.say(HELP_TEXT)
 })
 
-slapp.command('/tusklate', (msg) => {
-    console.log('Mes', msg)
-    let promises = msg.text.split(" ").map((value) => {
+slapp.command('/tusklate', (msg, text) => {
+    console.log('Mes', text)
+    let promises = text.split(" ").map((value) => {
         return translate(value.toLowerCase(), { from: 'pl', to: 'en' }).then(resp => resp.text.toLowerCase()).catch((err) => { msg.say('Niestety - nie pykło :(' )})
     })
 
