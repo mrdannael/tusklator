@@ -18,8 +18,9 @@ Oto lista rzeczy, które potrafię:
 \`pics\` - pokażę Ci ciekawy obrazek.
 `
 
-slapp.message('help', ['mention', 'direct_message'], (msg) => {
-  msg.say(HELP_TEXT)
+slapp.message('(.*)', ['mention', 'direct_message'], (msg) => {
+    console.log('message')
+    msg.say(HELP_TEXT)
 })
 
 var app = slapp.attachToExpress(express())
