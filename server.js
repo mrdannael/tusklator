@@ -20,12 +20,12 @@ Oto lista rzeczy, które potrafię:
 `
 
 slapp.message('(.*)', ['mention', 'direct_message'], (msg) => {
-    console.log('message')
     msg.say(HELP_TEXT)
 })
 
 slapp.command('/tusklate', (msg) => {
-    let promises = msg.split(" ").map((value) => {
+    console.log('Mes', msg)
+    let promises = msg.text.split(" ").map((value) => {
         return translate(value.toLowerCase(), { from: 'pl', to: 'en' }).then(resp => resp.text.toLowerCase()).catch((err) => { msg.say('Niestety - nie pykło :(' )})
     })
 
