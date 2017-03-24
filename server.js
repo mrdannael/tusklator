@@ -15,13 +15,27 @@ var slapp = Slapp({
 var HELP_TEXT = `
 Oto lista rzeczy, które potrafię:
 \`help\` - wyświetla tą wiadomość.
-\`tusklate\` - tłumaczę Twoje zdanie na mój zaawansowany angielski.
-\`pics\` - pokażę Ci ciekawy obrazek.
+\`/tusklate\` - tłumaczę Twoje zdanie na mój zaawansowany angielski.
+\`/pics\` - pokażę Ci ciekawy obrazek.
 `
 
 slapp.message('(.*)', ['mention', 'direct_message'], (msg) => {
     console.log('message')
     msg.say(HELP_TEXT)
+})
+
+slapp.command('/tusklate', (msg) => {
+    let promises = msg.split(" ").map((value) => {
+        return translate(value.toLowerCase(), { from: 'pl', to: 'en' }).then(resp => resp.text.toLowerCase()).catch((err) => { msg.say('Niestety - nie pykło :(' )})
+    })
+
+    Promise.all(promises)
+        .then(response => {
+            msg.say(`${response.join(' ')} :tusk:`)
+        })
+        .catch(err => {
+            msg.say(`Niestety - Something is no yes :(`)
+        })
 })
 
 var app = slapp.attachToExpress(express())
