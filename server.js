@@ -19,14 +19,13 @@ Oto lista rzeczy, które potrafię:
 \`/pics\` - pokażę Ci ciekawy obrazek.
 `
 
-slapp.message('(.*)', ['mention', 'direct_message'], (msg) => {
+slapp.message('help', ['mention', 'direct_mention', 'direct_message'], (msg) => {
     msg.say(HELP_TEXT)
 })
 
 slapp.command('/tusklate', (msg, text) => {
-    console.log('Mes', text)
     let promises = text.split(" ").map((value) => {
-        return translate(value.toLowerCase(), { from: 'pl', to: 'en' }).then(resp => resp.text.toLowerCase()).catch((err) => { msg.say('Niestety - nie pykło :(' )})
+        return translate(value.toLowerCase(), { from: 'pl', to: 'en' }).then(resp => resp.text.toLowerCase()).catch((err) => { console.log('Translate err', err)})
     })
 
     Promise.all(promises)
@@ -34,6 +33,7 @@ slapp.command('/tusklate', (msg, text) => {
             msg.say(`${response.join(' ')} :tusk:`)
         })
         .catch(err => {
+            console.log('All err', err)
             msg.say(`Niestety - Something is no yes :(`)
         })
 })
